@@ -1,12 +1,13 @@
 ﻿using System;
 
-namespace Cmd.App
+namespace Program
 {
-    class Program
+    public class Tester
     {
-        static void Main(string[] args)
+        public static void Main()
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine(Environment.CurrentDirectory);
+            Console.Read();
         }
     }
 }
