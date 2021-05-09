@@ -7,28 +7,18 @@ namespace Program
     {
         public static void Main()
         {
-        tag:
-            var input = Console.ReadLine();
+            var input = Console.ReadLine().ToUpper();
 
-            switch (input)
+            //switch pattern matching
+            string answer = input switch
             {
-                case "f":
-                case "F":
-                    Console.WriteLine("Is Female");
-                    break;
-                case "m":
-                case "M":
-                    Console.WriteLine("Is Male");
-                    break;
-                case "break":
-                    goto exitTag;
-                default:
-                    Console.WriteLine("UnKnown");
-                    break;
-            }
+                "F" => "Is Female",
+                "M" => "Is Male",
+                "break" => "break",
+                _ => "UnKnown"
+            };
 
-            goto tag;
-            exitTag:
+            Console.WriteLine(answer);
             Console.WriteLine("End of Main");
         }
 
