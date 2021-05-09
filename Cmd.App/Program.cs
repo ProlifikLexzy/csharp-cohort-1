@@ -7,19 +7,24 @@ namespace Program
     {
         public static void Main()
         {
-            //Unconditional Branch Statement
-            SomeMethod();
-            Console.WriteLine("End of Main");
+        tag:
+            var input = Console.ReadLine();
+
+            if (input == "f")
+                Console.WriteLine("Is Female");
+            else if (input == "F")
+                Console.WriteLine("Is Female");
+            else if (input == "m")
+                Console.WriteLine("Is Male");
+            else if (input == "M")
+                Console.WriteLine("Is Male");
+            else
+                Console.WriteLine("UnKnown");
+
+            goto tag;
+            //Console.WriteLine("End of Main");
         }
 
-        public static void SomeMethod()
-        {
-            int x;
-            x = 18;
-            var y = 9;
-            bool isGreater = x > y;
-            Console.WriteLine($"{x} > {y} = {isGreater}.");
-            Console.WriteLine("{0} > {1} = {2}", 18, 9, isGreater);
-        }
+
     }
 }
