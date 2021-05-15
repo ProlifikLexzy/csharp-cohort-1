@@ -4,14 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cmd.Core
+namespace Cmd.App.Academy
 {
-    class Algebra
+    public enum Gender
     {
-        public static void SomeMethod()
-        {
-            Console.Write(0);
-        }
-
+        UNKNOWN,
+        MALE,
+        FEMALE
     }
 }

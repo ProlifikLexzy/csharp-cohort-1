@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cmd.App
+namespace Cmd.App.Academy
 {
-    public static class ArithmeticExtension
+    public class Application
     {
         
     }

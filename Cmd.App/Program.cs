@@ -1,25 +1,21 @@
 ﻿using Cmd.App;
+using Cmd.Core;
 using System;
 
 namespace Program
 {
     public class Tester
     {
+        public static int v = 90;// public global static field
         public static void Main()
         {
-            var input = Console.ReadLine().ToUpper();
-
-            //switch pattern matching
-            string answer = input switch
-            {
-                "F" => "Is Female",
-                "M" => "Is Male",
-                "break" => "break",
-                _ => "UnKnown"
-            };
-
-            Console.WriteLine(answer);
             Console.WriteLine("End of Main");
+        }
+
+        public static void Method()
+        {
+            v = 89;
+            Console.Write(v);
         }
 
 

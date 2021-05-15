@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace Cmd.Core
 {
-    class Algebra
+    public class SomeClass
     {
-        public static void SomeMethod()
+        public void MyMethod()
         {
-            Console.Write(0);
+            Algebra.SomeMethod();
         }
-
     }
 }
