@@ -8,6 +8,8 @@ namespace Cmd.App.Academy
 {
     public class Application
     {
-        
+        public void Approve()
+        {
+        }
     }
 }

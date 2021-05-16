@@ -7,24 +7,29 @@ namespace Program
 {
     public class Tester
     {
-        public static int v = 90;// public global static field
         public static void Main()
         {
 
-            var instuctorCourse = new Instructor.InstuctorCourse();
-            var instructor = new Instructor("004054-PL");
-            Console.WriteLine("First Name: {0}", Instructor.FirstName);
 
-            Instructor.FirstName = "Jide";
+            Application[] v = GetApplications();
 
-            var info = new Info();
-            var instructor2 = new Instructor(info);
-            Console.WriteLine("First Name: {0}", Instructor.FirstName);
-            
-            Console.WriteLine("End of Main");
+            for (var i = 0; i < v.Length; i++)
+            {
+                v[i] = new Application();
+            }
+
+            for (var i = 0; i < v.Length; i++)
+            {
+                var application = v[i];
+                application.Approve();
+            }
+
+            //Console.WriteLine("End of Main");
         }
 
-
-
+        public static Application[] GetApplications()
+        {
+            return new Application[100];
+        }
     }
 }
