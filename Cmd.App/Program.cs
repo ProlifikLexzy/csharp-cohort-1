@@ -9,22 +9,16 @@ namespace Program
     {
         public static void Main()
         {
+            int i = 90;
+            Console.WriteLine(i);
+            var v = 0;
+            v = v / i;
+            Console.WriteLine(v);
 
+            var result = (0 <= v || true);
+            Console.WriteLine(result);
 
-            Application[] v = GetApplications();
-
-            for (var i = 0; i < v.Length; i++)
-            {
-                v[i] = new Application();
-            }
-
-            for (var i = 0; i < v.Length; i++)
-            {
-                var application = v[i];
-                application.Approve();
-            }
-
-            //Console.WriteLine("End of Main");
+            Console.WriteLine("End of Main");
         }
 
         public static Application[] GetApplications()
