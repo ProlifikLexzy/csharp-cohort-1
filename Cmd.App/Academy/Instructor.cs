@@ -18,6 +18,7 @@ namespace Cmd.App
     {
         public Instructor()
         {
+            Console.WriteLine("Constructor Called.");
         }
 
         public Instructor(string instructorId)
@@ -25,15 +26,16 @@ namespace Cmd.App
             InstructorId = instructorId;
         }
 
-        public Instructor(string instructorId, string lastName)
+        public Instructor(Info info)
         {
-            InstructorId = instructorId;
-            LastName = lastName;
+            InstructorId = info.InstructorId;
+            LastName = info.LastName;
+            FirstName = info.FirstName;
         }
 
         public string InstructorId { get; set; }
         public string LastName { get; set; }//implicit propety
-        public string FirstName { get; set; }
+        public static string FirstName { get; set; } = "Ben";
         public Title Title { get; set; }
         public DateTime DateOfBirth { get; set; }
         public static Gender Gender { get; set; }
@@ -43,7 +45,7 @@ namespace Cmd.App
             Console.Write(0);
         }
 
-        public class InstuctorCourse
+        private class InstuctorCourse
         {
             public string InstructorId { get; set; }
             public string CourseId { get; set; }
