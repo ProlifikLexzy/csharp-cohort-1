@@ -45,7 +45,7 @@ namespace Cmd.App
             Console.Write(0);
         }
 
-        private class InstuctorCourse
+        public class InstuctorCourse
         {
             public string InstructorId { get; set; }
             public string CourseId { get; set; }

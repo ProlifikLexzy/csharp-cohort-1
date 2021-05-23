@@ -9,15 +9,6 @@ namespace Program
     {
         public static void Main()
         {
-            int i = 90;
-            Console.WriteLine(i);
-            var v = 0;
-            v = v / i;
-            Console.WriteLine(v);
-
-            var result = (0 <= v || true);
-            Console.WriteLine(result);
-
             Console.WriteLine("End of Main");
         }
 
