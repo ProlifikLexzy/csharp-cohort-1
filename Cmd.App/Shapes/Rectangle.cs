@@ -8,13 +8,17 @@ namespace Cmd.App.Shapes
 {
     public class Rectangle : Shape
     {
-        public Rectangle(int width, int height) : base(width, height)
+        protected int _width;
+        protected int _height;
+        public Rectangle(int width, int height)
         {
+            _width = width;
+            _height = height;
         }
 
         public override double GetArea()
         {
-            return base.GetArea();
+            return _width * _height;
         }
     }
 }

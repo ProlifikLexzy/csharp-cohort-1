@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Cmd.App.Shapes
 {
-
-    public abstract class Shape
+    public class Square
     {
-        public abstract double GetArea();
+        
     }
 }

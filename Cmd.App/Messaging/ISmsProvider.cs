@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cmd.App.Shapes
+namespace Cmd.App.Messaging
 {
-
-    public abstract class Shape
+    public interface ISmsProvider
     {
-        public abstract double GetArea();
+        
     }
 }

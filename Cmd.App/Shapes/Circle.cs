@@ -9,7 +9,7 @@ namespace Cmd.App.Shapes
     public class Circle : Shape
     {
         private int _radius;
-        public Circle(int width, int height, int radius) : base(width, height)
+        public Circle(int width, int height, int radius)
         {
             _radius = radius;
         }
@@ -21,5 +21,9 @@ namespace Cmd.App.Shapes
             return round;
 
         }
+
+
+        public int MyProperty { get; set; }
+
     }
 }
