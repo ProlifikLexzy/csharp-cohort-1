@@ -4,10 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cmd.App.Messaging
+namespace Cmd.App.Banking
 {
-    public class Twillio : ISmsProvider
+    public enum Currencies
     {
-
+        NAIRA,
+        USD,
+        EUR,
+        GB
     }
 }

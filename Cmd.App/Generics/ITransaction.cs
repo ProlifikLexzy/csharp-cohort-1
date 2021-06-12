@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cmd.App.Messaging
+namespace Cmd.App.Generics
 {
-    public interface ISmsProvider
+    public interface ITransaction<T, H>
     {
-        
+        T Debit(T amount);
+        H Credit(H amount);
     }
 }
