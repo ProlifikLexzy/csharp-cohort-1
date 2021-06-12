@@ -12,6 +12,16 @@ namespace Cmd.App.Banking
 
         public Currencies Currency { get; set; }
 
+        public decimal Credit(decimal amount)
+        {
+            throw new NotImplementedException();
+        }
+
+        public decimal Debit(decimal amount)
+        {
+            throw new NotImplementedException();
+        }
+
         public decimal OpenAccount(string email)
         {
             return 0;

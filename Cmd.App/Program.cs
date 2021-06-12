@@ -1,4 +1,5 @@
 ﻿using Cmd.App.Banking;
+using Cmd.App.Company;
 using Cmd.App.Generics;
 using System;
 
@@ -8,41 +9,41 @@ namespace Program
     {
         public static void Main()
         {
-            Object o = new();
-            
-           
 
-            var account = new SavingAccount();
-            account.Currency = Currencies.NAIRA;
+            var employeeManager = new EmployeeManager();
+            employeeManager.Create(new Employee());
 
-            var account2 = new SavingAccount()
-            {
-                Currency = Currencies.NAIRA
-            };
+            var customerManager = new CustomerManager();
+            customerManager.Update(new Customer());
 
-            dynamic d = new
-            {
-                anything = 899,
-                Lastname = "iueuureure",
-                Currencies = account.Currency
-            };
+            var empManager = new Manager<Employee>();
+            employeeManager.Create(new());
+            employeeManager.Update(new());
 
-            Console.WriteLine(d.Lastname);
+            var custManager = new Manager<Customer>();
+            custManager.Create(new());
+            custManager.Update(new());
 
-            var arithmetic = new Arithmetic<int, double>();
-            var arithmetic2 = new Arithmetic<bool, string>();
+            var savingsManager = new Manager<SavingAccount>();
+            savingsManager.Create(new());
 
-            SavingAccount txn = new();
+            var vendorManager = new Manager<Vendor>();
+            vendorManager.Create(new());
 
-            var acc = txn as IAccount;
-            if (acc != null)
-                acc.Credit(90);
-
-
-            //if (txn is IAccount account)
-            //    account.Credit(90);
+            var submision = new VendorSubmission();
+            submision.Submit<Quote>(new());
+            submision.Submit<Invoice>(new());
+            submision.Submit(new Receipt());
 
             Console.WriteLine("End of Main");
         }
+
+        public static void WriteLine(object obj)
+        {
+            string value = obj.ToString();
+
+            Console.WriteLine(value);
+        }
+
     }
 }

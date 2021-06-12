@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cmd.App.Company;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,11 @@ namespace Cmd.App.Banking
         public decimal AccountBalance { get; private set; } // read-only property
         public Currencies Currency { get; set; }
 
+
+        public override string ToString()
+        {
+            return $"Account Bal:{this.AccountBalance} Currency:{Currency}";
+        }
 
         public decimal Credit(decimal amount)
         {
@@ -50,4 +56,6 @@ namespace Cmd.App.Banking
             return this.AccountBalance;
         }
     }
+
+
 }
