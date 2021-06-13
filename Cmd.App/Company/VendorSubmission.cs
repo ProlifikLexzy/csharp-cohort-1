@@ -8,7 +8,10 @@ namespace Cmd.App.Company
 {
     public class VendorSubmission
     {
-       
+        public void SubmitInvoice(ITender invoice)
+        {
+
+        }
     }
 
     public class Quote: ITender { }
