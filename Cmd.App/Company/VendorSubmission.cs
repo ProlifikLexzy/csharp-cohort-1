@@ -8,9 +8,7 @@ namespace Cmd.App.Company
 {
     public class VendorSubmission
     {
-        public void Submit<T>(T t) where T: ITender
-        { 
-        }
+       
     }
 
     public class Quote: ITender { }

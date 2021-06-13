@@ -31,9 +31,9 @@ namespace Program
             vendorManager.Create(new());
 
             var submision = new VendorSubmission();
-            submision.Submit<Quote>(new());
-            submision.Submit<Invoice>(new());
-            submision.Submit(new Receipt());
+            custManager.Submit<Customer, Quote>(new());
+            empManager.Submit(new Invoice());
+            vendorManager.Submit<Vendor, Receipt>(new Receipt());
 
             Console.WriteLine("End of Main");
         }
