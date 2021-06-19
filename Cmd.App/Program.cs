@@ -10,47 +10,44 @@ using System.Collections.Generic;
 
 namespace Program
 {
-
     //Method
     //Property
     //Field
     //Nested Types (class, interface, struct, delegates)
     //Events
     //Indexers
-    public class ester
+    public class Tester
     {
         public delegate int MyDelegate(int i);
         public static void Main()
         {
+            //IEnumerable
+            var users = new Users() { };
 
-
-
-            Square s = new Square();
-            DateTime? dateTime;
-            Nullable<bool> d = null;
-            bool? age = d;
-
-            if (age.HasValue)
+            foreach (var user in users)
             {
-                Console.WriteLine(age.Value);
+                Console.WriteLine(user);
             }
 
-            // Null Coalescing
-            bool? isSingle = null;
+            var numbers = new Int32[6] { 1, 2, 3, 4, 5, 6 };
+            var enumerator = numbers.GetEnumerator();
 
-            var defaultMessage = "Marriage status not selected";
-            var marriedMessage = "You're married";
-            var singleMessage = "You're single";
-            string message = isSingle.HasValue ? (isSingle.Value ? marriedMessage : singleMessage) : defaultMessage; // Tenary operator
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                enumerator.MoveNext();
+                Console.WriteLine(enumerator.Current);
+            }
 
-
+            //enumerator.Reset();
             
-            Console.WriteLine(message);
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                if (enumerator.MoveNext())
+                {
+                    Console.WriteLine(enumerator.Current);
+                }
+            }
 
-           string somevalue = null;
-
-            var m = somevalue ?? "[NA]";
-            Console.WriteLine(m);
 
             Console.WriteLine("End of Main");
         }
