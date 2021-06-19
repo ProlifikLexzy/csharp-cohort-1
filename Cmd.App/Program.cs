@@ -1,5 +1,6 @@
 ﻿using Cmd.App.Banking;
 using Cmd.App.Company;
+using Cmd.App.Events;
 using Cmd.App.Generics;
 using System;
 using System.Collections;
@@ -7,98 +8,57 @@ using System.Collections.Generic;
 
 namespace Program
 {
-    public delegate X MultiplyDelegate<Z, Y, X>(Z x, Y y);
-    public delegate A MultiplyDelegate<A>(A x, A y);
-    public delegate void AddDelegate(int x, int y);
-    public delegate void SubmissionDelegate(ITender tender);
-    public delegate void PersonDelegate(Customer person);
 
+    //Method
+    //Property
+    //Field
+    //Nested Types (class, interface, struct, delegates)
+    //Events
+    //Indexers
     public class Tester
     {
+        public delegate int MyDelegate(int i);
         public static void Main()
         {
-            Calculator();
+
+            MyDelegate myDelegate = (param1) => { return 85; };
+            MyDelegate myDelegate2 = param1 => { return 85; };
+            MyDelegate myDelegate3 = param1 => 85;
+            MyDelegate myDelegate4 = myDelegate;
+
+            var o = new { LastName = "" };
+
+            BankTransaction bankTransaction = new();
+            bankTransaction.TransactionEvent += new TransactionDelegate(RespondToDebit);
+            bankTransaction.TransactionEvent += EmailManager.SendEmailAlert;
+            bankTransaction.TransactionEvent += (type, amount, customerNo) =>
+            {
+
+            };
+
+            bankTransaction.DebitCustomer();
+
             Console.WriteLine("End of Main");
         }
 
-        public static void Calculator()
+        public static void RespondToDebit(TransactionType type, double amount, string customerNo)
         {
-
-            List<int> arrayList = new List<int>();
-            arrayList.Add(9);
-            arrayList.Add(12);
-            arrayList.Add(14);
-            arrayList.Add(10);
-           
-
-            for (int i = 0; i < arrayList.Count; i++)
-            {
-                Console.WriteLine(arrayList[i]);
-            }
-
-            List<string> arrayList2 = new List<string>();
-            arrayList2.Add("Error");
-
-            MultiplyDelegate<int, double, double> multiplyDelegate2 = MultiplyDelegate<int, double, double>;
-            MultiplyDelegate<int, double, double> multiplyDelegate = MultiplyDelegate;
-            AddDelegate delegatedMethod = Add;
-            AddDelegate delegatedMethod2 = AddSquare;
-            delegatedMethod += AddSquare; //delegate multicasting
-            delegatedMethod(2, 2);
-            delegatedMethod2(4, 5);
-
-            delegatedMethod -= AddSquare;
-
-            Console.WriteLine("Removed Add Square Method");
-            delegatedMethod(2, 2);
-
-            AddNum<int, double>(78, 9);
-
-            //var submission = new VendorSubmission();
-            //SubmissionDelegate submissionDelegate = submission.SubmitInvoice;
-            //PersonDelegate personDelegate = AssignToCustomer;
+            Console.WriteLine("{0} of {1:n2} occured on customer account ({2})", type, amount, customerNo);
         }
 
-        public static C MultiplyDelegate<A, B, C>(A param1, B param2)
+        public static void SendSmsAlert(TransactionType type, double amount, string customerNo)
         {
-            return default;
+            Console.WriteLine("Sms Alert");
         }
-
-        public static double MultiplyDelegate(int param1, double param2)
-        {
-            return param1 * param2;
-        }
-
-        public static void Add(int x, int y)
-        {
-            Console.WriteLine($"{x} + {y} = {x + y}");
-        }
-
-        public static void AddSquare(int x, int y)
-        {
-            var result = x + y;
-            Console.WriteLine($"({x} + {y})2 = {result * result}");
-        }
-
-
-
-        public void AssignToCustomer(Customer customer)
-        {
-
-        }
-
-
-        public static void AddNum<Q, J>(Q one, J two)
-        {
-
-        }
-
     }
 
-    public class Person
+    public class EmailManager
     {
+        public static void SendEmailAlert(TransactionType type, double amount, string customerNo)
+        {
+            Console.WriteLine("Email Alert");
+        }
     }
 
-    public class Customer : Person { }
 
 }
