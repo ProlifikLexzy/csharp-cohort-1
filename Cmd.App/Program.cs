@@ -1,7 +1,9 @@
-﻿using Cmd.App.Banking;
+﻿using Cmd.App.Academy;
+using Cmd.App.Banking;
 using Cmd.App.Company;
 using Cmd.App.Events;
 using Cmd.App.Generics;
+using Cmd.App.Shapes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,50 +17,43 @@ namespace Program
     //Nested Types (class, interface, struct, delegates)
     //Events
     //Indexers
-    public class Tester
+    public class ester
     {
         public delegate int MyDelegate(int i);
         public static void Main()
         {
 
-            MyDelegate myDelegate = (param1) => { return 85; };
-            MyDelegate myDelegate2 = param1 => { return 85; };
-            MyDelegate myDelegate3 = param1 => 85;
-            MyDelegate myDelegate4 = myDelegate;
 
-            var o = new { LastName = "" };
 
-            BankTransaction bankTransaction = new();
-            bankTransaction.TransactionEvent += new TransactionDelegate(RespondToDebit);
-            bankTransaction.TransactionEvent += EmailManager.SendEmailAlert;
-            bankTransaction.TransactionEvent += (type, amount, customerNo) =>
+            Square s = new Square();
+            DateTime? dateTime;
+            Nullable<bool> d = null;
+            bool? age = d;
+
+            if (age.HasValue)
             {
+                Console.WriteLine(age.Value);
+            }
 
-            };
+            // Null Coalescing
+            bool? isSingle = null;
 
-            bankTransaction.DebitCustomer();
+            var defaultMessage = "Marriage status not selected";
+            var marriedMessage = "You're married";
+            var singleMessage = "You're single";
+            string message = isSingle.HasValue ? (isSingle.Value ? marriedMessage : singleMessage) : defaultMessage; // Tenary operator
+
+
+            
+            Console.WriteLine(message);
+
+           string somevalue = null;
+
+            var m = somevalue ?? "[NA]";
+            Console.WriteLine(m);
 
             Console.WriteLine("End of Main");
         }
 
-        public static void RespondToDebit(TransactionType type, double amount, string customerNo)
-        {
-            Console.WriteLine("{0} of {1:n2} occured on customer account ({2})", type, amount, customerNo);
-        }
-
-        public static void SendSmsAlert(TransactionType type, double amount, string customerNo)
-        {
-            Console.WriteLine("Sms Alert");
-        }
     }
-
-    public class EmailManager
-    {
-        public static void SendEmailAlert(TransactionType type, double amount, string customerNo)
-        {
-            Console.WriteLine("Email Alert");
-        }
-    }
-
-
 }

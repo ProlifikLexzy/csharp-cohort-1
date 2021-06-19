@@ -10,7 +10,7 @@ namespace Cmd.App.Academy
     {
         public string Title { get; set; }
         public string Code { get; set; }
-        public int Unit { get; set; }
+        public int? Unit { get; set; }
         public Duration Duration { get; set; }
     }
 }
