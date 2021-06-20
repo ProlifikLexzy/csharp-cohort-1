@@ -22,31 +22,32 @@ namespace Program
         public static void Main()
         {
             //IEnumerable
-            var users = new Users() { };
+            var userArray = new string[] { "Prolifik Lexzy", "Scott Hanselman", "Scott Hunter", "Scott Guthrie" };
+            var users = new Users(userArray);
 
             foreach (var user in users)
             {
                 Console.WriteLine(user);
             }
 
-            var numbers = new Int32[6] { 1, 2, 3, 4, 5, 6 };
-            var enumerator = numbers.GetEnumerator();
+            //var numbers = new Int32[6] { 1, 2, 3, 4, 5, 6 };
+            //var enumerator = numbers.GetEnumerator();
 
-            for (int i = 0; i < numbers.Length; i++)
-            {
-                enumerator.MoveNext();
-                Console.WriteLine(enumerator.Current);
-            }
+            //for (int i = 0; i < numbers.Length; i++)
+            //{
+            //    enumerator.MoveNext();
+            //    Console.WriteLine(enumerator.Current);
+            //}
 
-            //enumerator.Reset();
-            
-            for (int i = 0; i < numbers.Length; i++)
-            {
-                if (enumerator.MoveNext())
-                {
-                    Console.WriteLine(enumerator.Current);
-                }
-            }
+            ////enumerator.Reset();
+
+            //for (int i = 0; i < numbers.Length; i++)
+            //{
+            //    if (enumerator.MoveNext())
+            //    {
+            //        Console.WriteLine(enumerator.Current);
+            //    }
+            //}
 
 
             Console.WriteLine("End of Main");

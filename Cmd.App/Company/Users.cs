@@ -9,10 +9,15 @@ namespace Cmd.App.Company
 {
     public class Users : IEnumerable<string>
     {
+        private string[] _users = new string[0];
+
+        public Users(string[] users)
+        {
+            _users = users;
+        }
         public IEnumerator<string> GetEnumerator()
         {
-            var users = new string[] { "Prolifik Lexzy", "Scott Hanselman", "Scott Hunter", "Scott Guthrie" };
-            return new UserEnumerator<string>(users);
+            return new UserEnumerator<string>(_users);
         }
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
@@ -38,11 +43,8 @@ namespace Cmd.App.Company
         private int counter = 0;
         public bool MoveNext()
         {
-            if (counter > _users.Length)
-                return false;
-
             counter++;
-            return true;
+            return counter < _users.Length;
         }
 
         public void Reset()
