@@ -22,35 +22,53 @@ namespace Program
         public static void Main()
         {
             //IEnumerable
-            var userArray = new string[] { "Prolifik Lexzy", "Scott Hanselman", "Scott Hunter", "Scott Guthrie" };
-            var users = new Users(userArray);
-
-            foreach (var user in users)
+            foreach (var item in GetUsers())
             {
-                Console.WriteLine(user);
+                Console.WriteLine(item);
+            }
+            Console.WriteLine("End of Main");
+        }
+
+        public static IEnumerable<string> GetNames()
+        {
+           
+            //var userArray = new string[]
+            //{
+            //     "Prolifik Lexzy",
+            //    "Scott Hanselman",
+            //    "Scott Hunter",
+            //    "Scott Guthrie"
+            //};
+
+            yield return "Prolifik Lexzy";
+            yield return "Scott Hanselman";
+            yield return "Scott Hunter";
+            yield return "Scott Hunter";
+        }
+
+        public static IEnumerable<User> GetUsers()
+        {
+            var names = new string[]
+            {
+                 "Prolifik Lexzy",
+                "Scott Hanselman",
+                "Scott Hunter",
+                "Scott Guthrie"
+            }; ;
+
+            //foreach (var name in names)
+            //{
+            //    yield return new User() { FullName = name };
+            //}
+
+
+            for (int i = 0; i < names.Length; i++)
+            {
+                yield return new User() { FullName = names[i] };
             }
 
-            //var numbers = new Int32[6] { 1, 2, 3, 4, 5, 6 };
-            //var enumerator = numbers.GetEnumerator();
+            yield return new User() { FullName = "Funke Akindele"};
 
-            //for (int i = 0; i < numbers.Length; i++)
-            //{
-            //    enumerator.MoveNext();
-            //    Console.WriteLine(enumerator.Current);
-            //}
-
-            ////enumerator.Reset();
-
-            //for (int i = 0; i < numbers.Length; i++)
-            //{
-            //    if (enumerator.MoveNext())
-            //    {
-            //        Console.WriteLine(enumerator.Current);
-            //    }
-            //}
-
-
-            Console.WriteLine("End of Main");
         }
 
     }

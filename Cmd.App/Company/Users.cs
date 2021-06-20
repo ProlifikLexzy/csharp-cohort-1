@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace Cmd.App.Company
 {
-    public class Users : IEnumerable<string>
+    public class Users<T> : IEnumerable<T>
     {
-        private string[] _users = new string[0];
+        private T[] _users = new T[0];
 
-        public Users(string[] users)
+        public Users(T[] users)
         {
             _users = users;
         }
-        public IEnumerator<string> GetEnumerator()
+        public IEnumerator<T> GetEnumerator()
         {
-            return new UserEnumerator<string>(_users);
+            return new UserEnumerator<T>(_users);
         }
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
