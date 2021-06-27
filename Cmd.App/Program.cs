@@ -4,9 +4,15 @@ using Cmd.App.Company;
 using Cmd.App.Events;
 using Cmd.App.Generics;
 using Cmd.App.Shapes;
+using Microsoft.CSharp.RuntimeBinder;
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
+using System.Linq;
+using System.Net.Http;
 
 namespace Program
 {
@@ -16,21 +22,29 @@ namespace Program
     //Nested Types (class, interface, struct, delegates)
     //Events
     //Indexers
+
     public class Tester
     {
-        public delegate int MyDelegate(int i);
         public static void Main()
         {
-            var u1 = new User() { FullName = "Segun Ojo", Age = 20 };
-            var u2 = new User() { FullName = "Segun Ojo", Age = 89};
-             var result = --u2;
-
-            
-
-            Console.WriteLine(result);
-
+            var user = new User()
+            {
+                LastName = "Prolifik",
+                FirstName = "Lexzy"
+            };
             Console.WriteLine("End of Main");
         }
 
+        public string MyProperty { get; set; }
+
+
+    }
+
+    [DebuggerDisplay("Hello {LastName} {FirstName}")]
+    public class User
+    {
+        public string LastName { get; set; }
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        public string FirstName { get; set; }
     }
 }
