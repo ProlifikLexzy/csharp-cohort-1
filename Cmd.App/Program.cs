@@ -1,8 +1,10 @@
 ﻿using Cmd.App.Academy;
 using Cmd.App.Banking;
+using Cmd.App.Collections;
 using Cmd.App.Company;
 using Cmd.App.Events;
 using Cmd.App.Generics;
+using Cmd.App.Models;
 using Cmd.App.Shapes;
 using Microsoft.CSharp.RuntimeBinder;
 using Newtonsoft.Json;
@@ -22,51 +24,42 @@ namespace Program
     {
         public static void Main()
         {
+            var num = new int[9];
+            var collections = new MyCollections<Employee>() ;
+            collections.Add(new Employee());
+            
+            foreach(var item in collections)
+            { 
+            }
 
-            var v = new Value() { Val = 6 };
-            Arithemetic.Add(v, 9);
+            var random = new RandomClass();
+
+            random[2] = 800;
+            Console.WriteLine(random[2]);
+
             Console.WriteLine("End of Main");
             Console.Read();
         }
     }
 
-    /// <summary>
-    /// A class for carry out arithmentic operation
-    /// </summary>
-    public class Arithemetic
+
+    public class RandomClass<T> where T:
     {
-        /// <summary>
-        /// A method to add 2 numbers
-        /// </summary>
-        /// <param name="first">First parameter of type <see cref="Value"/></param>
-        /// <param name="second">Second Parameter</param>
-        /// <returns>Returns a type of <see cref="Value"/></returns>
-        public static Result Add(Value first, int second)
+        private int[] numbers = new int[] {9,2, 4 };
+
+        //Indexer
+        public T this[int index]
         {
-            return first + second;
+            get
+            {
+                return numbers[index];
+            }
+            set
+            {
+                numbers[index] = value;
+            }
         }
     }
 
-    /// <summary>
-    /// Result a value
-    /// </summary>
-    public class Value
-    {
-        public int Val { get; set; }
-
-        public static Result operator +(Value first, int second)
-        {
-            return new Result() { Val = first.Val + second };
-        }
-        public static Result operator -(Value first, int second)
-        {
-            return new Result() { Val = first.Val + second };
-        }
-    }
-
-    public class Result
-    {
-        public int Val { get; set; }
-    }
 
 }
