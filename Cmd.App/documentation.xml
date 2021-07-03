@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Cmd.App</name>
+    </assembly>
+    <members>
+        <member name="T:Program.Arithemetic">
+            <summary>
+            A class for carry out arithmentic operation
+            </summary>
+        </member>
+        <member name="M:Program.Arithemetic.Add(System.Int32,System.Int32)">
+            <summary>
+            A method to add 2 numbers
+            </summary>
+            <param name="first">First parameter</param>
+            <param name="second">Second Parameter</param>
+            <returns>Returns integer number</returns>
+        </member>
+    </members>
+</doc>

@@ -13,38 +13,60 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Net.Http;
+using System.Runtime.CompilerServices;
 
 namespace Program
 {
-    //Method
-    //Property
-    //Field
-    //Nested Types (class, interface, struct, delegates)
-    //Events
-    //Indexers
 
     public class Tester
     {
         public static void Main()
         {
-            var user = new User()
-            {
-                LastName = "Prolifik",
-                FirstName = "Lexzy"
-            };
+
+            var v = new Value() { Val = 6 };
+            Arithemetic.Add(v, 9);
             Console.WriteLine("End of Main");
+            Console.Read();
         }
-
-        public string MyProperty { get; set; }
-
-
     }
 
-    [DebuggerDisplay("Hello {LastName} {FirstName}")]
-    public class User
+    /// <summary>
+    /// A class for carry out arithmentic operation
+    /// </summary>
+    public class Arithemetic
     {
-        public string LastName { get; set; }
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        public string FirstName { get; set; }
+        /// <summary>
+        /// A method to add 2 numbers
+        /// </summary>
+        /// <param name="first">First parameter of type <see cref="Value"/></param>
+        /// <param name="second">Second Parameter</param>
+        /// <returns>Returns a type of <see cref="Value"/></returns>
+        public static Result Add(Value first, int second)
+        {
+            return first + second;
+        }
     }
+
+    /// <summary>
+    /// Result a value
+    /// </summary>
+    public class Value
+    {
+        public int Val { get; set; }
+
+        public static Result operator +(Value first, int second)
+        {
+            return new Result() { Val = first.Val + second };
+        }
+        public static Result operator -(Value first, int second)
+        {
+            return new Result() { Val = first.Val + second };
+        }
+    }
+
+    public class Result
+    {
+        public int Val { get; set; }
+    }
+
 }
