@@ -1,65 +1,65 @@
-﻿using Cmd.App.Academy;
-using Cmd.App.Banking;
-using Cmd.App.Collections;
-using Cmd.App.Company;
-using Cmd.App.Events;
-using Cmd.App.Generics;
-using Cmd.App.Models;
-using Cmd.App.Shapes;
-using Microsoft.CSharp.RuntimeBinder;
-using Newtonsoft.Json;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
 using System.Linq;
-using System.Net.Http;
-using System.Runtime.CompilerServices;
 
 namespace Program
 {
-
     public class Tester
     {
         public static void Main()
         {
-            var num = new int[9];
-            var collections = new MyCollections<Employee>() ;
-            collections.Add(new Employee());
-            
-            foreach(var item in collections)
-            { 
+            var people = GetPeople();
+
+            var result = from n in people // initialization
+                         let c = Convert.ToInt32("90ssf")
+                         where n.Age > 10 && n.Age < 50
+                         orderby n.DateOfBirth
+                         select n.Age;
+
+        
+            foreach (var item in result)
+            {
+               Console.WriteLine(item);
             }
 
-            var random = new RandomClass();
+            var ages = people.Where(c => c.Age > 10 && c.Age < 50)
+                .OrderBy(c => c.DateOfBirth)
+                .Select(c => c.Age);
 
-            random[2] = 800;
-            Console.WriteLine(random[2]);
 
-            Console.WriteLine("End of Main");
             Console.Read();
         }
-    }
+
+        //  public static bool Filter(string keyword) => keyword == "John Doe";
 
 
-    public class RandomClass<T> where T:
-    {
-        private int[] numbers = new int[] {9,2, 4 };
-
-        //Indexer
-        public T this[int index]
+        public static void AssignArray(params string[] names)
         {
-            get
+            string[] n = names;
+        }
+
+
+        public static Person[] GetPeople()
+        {
+            return new List<Person>()
             {
-                return numbers[index];
-            }
-            set
-            {
-                numbers[index] = value;
-            }
+                new Person(){ FullName = "John Doe", BloodType = "AA" },
+                new Person(){ FullName = "Jane Doee" , BloodType = "AS" },
+                new Person(){ FullName = "Patric Dovan", BloodType = "AA" },
+                new Person(){ FullName = "Ronaldo Christiana" , BloodType = "AA"},
+            }.ToArray();
         }
     }
 
+    public class Person
+    {
+        public string FullName { get; set; }
+        public DateTime DateOfBirth { get; set; }
+        public string BloodType { get; set; }
+        public int Age { get; set; } = 100;
+    }
 
 }
+
+
+
