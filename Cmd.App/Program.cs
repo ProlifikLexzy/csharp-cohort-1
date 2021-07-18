@@ -11,18 +11,25 @@ namespace Program
         {
             int[] numbers = { 11, 12, 13, 14, 15, 16, 17, 18 };
 
-            var filterArray = numbers.Select(n => new Person() { Age = n });
+            var filterNumbers = from num in numbers
+                                where num > 15
+                                select num;
 
-            List<Person> personList = new List<Person>();
-
-            foreach (var n in numbers)
+            foreach (var item in filterNumbers)
             {
-                var p = new Person()
-                {
-                    Age = n
-                };
+                Console.Write($"{item} ");
+            }
 
-                personList.Add(p);
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                numbers[i] = numbers[i] * i;
+            }
+
+            Console.WriteLine();
+
+            foreach (var item in filterNumbers)
+            {
+                Console.Write($"{item} ");
             }
         }
     }
