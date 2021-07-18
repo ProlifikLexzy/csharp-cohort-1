@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace Program
 {
@@ -8,46 +9,21 @@ namespace Program
     {
         public static void Main()
         {
-            var people = GetPeople();
+            int[] numbers = { 11, 12, 13, 14, 15, 16, 17, 18 };
 
-            var result = from n in people // initialization
-                         let c = Convert.ToInt32("90ssf")
-                         where n.Age > 10 && n.Age < 50
-                         orderby n.DateOfBirth
-                         select n.Age;
+            var filterArray = numbers.Select(n => new Person() { Age = n });
 
-        
-            foreach (var item in result)
+            List<Person> personList = new List<Person>();
+
+            foreach (var n in numbers)
             {
-               Console.WriteLine(item);
+                var p = new Person()
+                {
+                    Age = n
+                };
+
+                personList.Add(p);
             }
-
-            var ages = people.Where(c => c.Age > 10 && c.Age < 50)
-                .OrderBy(c => c.DateOfBirth)
-                .Select(c => c.Age);
-
-
-            Console.Read();
-        }
-
-        //  public static bool Filter(string keyword) => keyword == "John Doe";
-
-
-        public static void AssignArray(params string[] names)
-        {
-            string[] n = names;
-        }
-
-
-        public static Person[] GetPeople()
-        {
-            return new List<Person>()
-            {
-                new Person(){ FullName = "John Doe", BloodType = "AA" },
-                new Person(){ FullName = "Jane Doee" , BloodType = "AS" },
-                new Person(){ FullName = "Patric Dovan", BloodType = "AA" },
-                new Person(){ FullName = "Ronaldo Christiana" , BloodType = "AA"},
-            }.ToArray();
         }
     }
 
