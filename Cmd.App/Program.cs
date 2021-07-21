@@ -15,6 +15,21 @@ namespace Program
             var enrollment = TrainingEnrollment.GetEnrollments();
             var employees = Employee.GetEmployees();
 
+            var employeesAndEnroll = employees.Join(enrollment, emp => emp.Id, enroll => enroll.EmployeeId,
+                    (emp, enroll) => new
+                    {
+                        FullName = $"{emp.FirstName} {emp.LastName}",
+                        CourseId = enroll.CourseId,
+
+                    });
+
+            var employeesAndEnrollment = employeesAndEnroll.Join(courses, empEnroll => empEnroll.CourseId,
+                course => course.Id, (empEnroll, course) => new 
+                { 
+                    empEnroll.FullName,
+                    empEnroll.CourseId,
+                    CourseTitle = course.Title
+                });
 
             //var employeesAndEnrollment = from emp in employees
             //                             join enroll in enrollment
