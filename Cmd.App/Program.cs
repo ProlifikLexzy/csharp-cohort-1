@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Cmd.App.Models;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -9,29 +11,29 @@ namespace Program
     {
         public static void Main()
         {
-            int[] numbers = { 11, 12, 13, 14, 15, 16, 17, 18 };
+            var courses = Course.GetCourses();
+            var enrollment = TrainingEnrollment.GetEnrollments();
+            var employees = Employee.GetEmployees();
 
-            var filterNumbers = from num in numbers
-                                where num > 15
-                                select num;
 
-            foreach (var item in filterNumbers)
+            //var employeesAndEnrollment = from emp in employees
+            //                             join enroll in enrollment
+            //                             on emp.Id equals enroll.EmployeeId
+            //                             join course in courses
+            //                             on enroll.CourseId equals course.Id
+            //                             select new
+            //                             {
+            //                                 FullName = $"{emp.FirstName} {emp.LastName}",
+            //                                 CourseId = enroll.CourseId,
+            //                                 CourseTitle = course.Title
+            //                             };
+
+            foreach (var item in employeesAndEnrollment)
             {
-                Console.Write($"{item} ");
-            }
-
-            for (int i = 0; i < numbers.Length; i++)
-            {
-                numbers[i] = numbers[i] * i;
-            }
-
-            Console.WriteLine();
-
-            foreach (var item in filterNumbers)
-            {
-                Console.Write($"{item} ");
+                Console.WriteLine($"{item.FullName}\t{item.CourseId}\t{item.CourseTitle}");
             }
         }
+
     }
 
     public class Person

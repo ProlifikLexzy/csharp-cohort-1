@@ -12,7 +12,7 @@ namespace Cmd.App.Models
         public string FirstName { get; set; }
         public List<int> Scores { get; set; }
 
-        public static List<Employee> GetEmployee()
+        public static List<Employee> GetEmployees()
         {
             return new List<Employee>()
             {
@@ -28,6 +28,11 @@ namespace Cmd.App.Models
                 new Employee {FirstName="Cesar", LastName="Garcia", Id=114, Scores= new List<int> {97, 89, 85, 82}},
                 new Employee {FirstName="Debra", LastName="Garcia", Id =115, Scores= new List<int> {35, 72, 91, 70}},
             };
+        }
+
+        public override string ToString()
+        {
+            return $"{FirstName} {LastName}";
         }
     }
 }
