@@ -11,52 +11,77 @@ namespace Program
     {
         public static void Main()
         {
-            var cSharpKeywords = GetCSharpKeywords();
-            var javaKeywords = GetJavaKeywords();
-
-            var employeeList = Employee.GetEmployees();
-            var enrollementList = TrainingEnrollment.GetEnrollments();
-            var courseList = Course.GetCourses();
-
-            //var setResult = from emp in employeeList
-            //                join enroll in enrollementList
-            //                on emp.Id equals enroll.EmployeeId
-            //                join course in courseList
-            //                on enroll.CourseId equals course.Id
-            //                select
-            //                new
-            //                {
-            //                    FullName = $"{emp.FirstName} {emp.LastName}",
-            //                    CourseTitle = course.Title
-            //                };
-
-            var firstJoin = employeeList.Join(enrollementList, 
-                emp => emp.Id, enroll => enroll.EmployeeId, (emp, enroll) => new 
-                { 
-                   FullName = $"{emp.FirstName} {emp.LastName}",
-                   enroll.EmployeeId,
-                   enroll.CourseId
-                });
-
-            //foreach (var item in firstJoin)
-            //{
-            //    Console.WriteLine("{0} {1}", item.FullName, item.EmployeeId);
-            //}
-
-            var setResult = firstJoin.Join(courseList, empEnroll => empEnroll.CourseId,
-                course => course.Id, (empEnroll, course) =>
+            var productList = new List<dynamic> 
+            { 
+            
                 new
-                {
-                    empEnroll.FullName,
-                    CourseTitle = course.Title
-                });
-            //Console.WriteLine(setResult);
-            foreach (var item in setResult)
-            {
-                Console.WriteLine("{0}-{1}", item.FullName, item.CourseTitle);
-            }
+                { 
+                    Price = 900,
+                    Quantity = 9
+                }
+            };
 
+            var netCost = productList.Sum(p => p.Price * p.Quantity);
+
+            IEnumerable<Employee> employeeList = Employee.GetEmployees();
+
+            Console.WriteLine(employeeList.LastOrDefault(c => c.Scores.Max() > 80));
+
+            var repeatList = Enumerable.Range(5, 6);
+
+            foreach (var item in repeatList)
+            {
+                Console.WriteLine(item);
+            }
         }
+        //public static void Main()
+        //{
+        //    var cSharpKeywords = GetCSharpKeywords();
+        //    var javaKeywords = GetJavaKeywords();
+
+        //    var employeeList = Employee.GetEmployees();
+        //    var enrollementList = TrainingEnrollment.GetEnrollments();
+        //    var courseList = Course.GetCourses();
+
+        //    //var setResult = from emp in employeeList
+        //    //                join enroll in enrollementList
+        //    //                on emp.Id equals enroll.EmployeeId
+        //    //                join course in courseList
+        //    //                on enroll.CourseId equals course.Id
+        //    //                select
+        //    //                new
+        //    //                {
+        //    //                    FullName = $"{emp.FirstName} {emp.LastName}",
+        //    //                    CourseTitle = course.Title
+        //    //                };
+
+        //    var firstJoin = employeeList.Join(enrollementList, 
+        //        emp => emp.Id, enroll => enroll.EmployeeId, (emp, enroll) => new 
+        //        { 
+        //           FullName = $"{emp.FirstName} {emp.LastName}",
+        //           enroll.EmployeeId,
+        //           enroll.CourseId
+        //        });
+
+        //    //foreach (var item in firstJoin)
+        //    //{
+        //    //    Console.WriteLine("{0} {1}", item.FullName, item.EmployeeId);
+        //    //}
+
+        //    var setResult = firstJoin.Join(courseList, empEnroll => empEnroll.CourseId,
+        //        course => course.Id, (empEnroll, course) =>
+        //        new
+        //        {
+        //            empEnroll.FullName,
+        //            CourseTitle = course.Title
+        //        });
+        //    //Console.WriteLine(setResult);
+        //    foreach (var item in setResult)
+        //    {
+        //        Console.WriteLine("{0}-{1}", item.FullName, item.CourseTitle);
+        //    }
+
+        //}
 
 
         public static List<string> GetCSharpKeywords()
