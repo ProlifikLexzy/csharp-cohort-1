@@ -11,6 +11,7 @@ namespace Cmd.App.Models
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public List<int> Scores { get; set; }
+        public int Score { get; set; }
 
         public static List<Employee> GetEmployees()
         {
