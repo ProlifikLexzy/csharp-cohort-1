@@ -1,88 +1,39 @@
-﻿using Cmd.App.Models;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
+using System.Threading;
 
 namespace Program
 {
     public class Tester
     {
-        public static void Main()
+        public static void Main(string[] args)
         {
-            var productList = new List<dynamic> 
-            { 
-            
-                new
-                { 
-                    Price = 900,
-                    Quantity = 9
-                }
-            };
-
-            var netCost = productList.Sum(p => p.Price * p.Quantity);
-
-            IEnumerable<Employee> employeeList = Employee.GetEmployees();
-
-            Console.WriteLine(employeeList.LastOrDefault(c => c.Scores.Max() > 80));
-
-            var repeatList = Enumerable.Range(5, 6);
-
-            foreach (var item in repeatList)
+            Thread t1 = new Thread(() =>
             {
-                Console.WriteLine(item);
-            }
+                int numberOfSeconds = 0;
+                while (numberOfSeconds < 10)
+                {
+                    Console.WriteLine(++numberOfSeconds);
+                    Thread.Sleep(1000);
+                }
+            });
+
+            Thread t2 = new Thread(() =>
+            {
+                int numberOfSeconds = 50;
+                while (numberOfSeconds < 70)
+                {
+                    Console.WriteLine(++numberOfSeconds);
+                    Thread.Sleep(1000);
+                }
+            });
+
+            t1.Start();
+            t2.Start();
+            Console.WriteLine("Thread Started.");
+
+            //Console.ReadLine();
         }
-        //public static void Main()
-        //{
-        //    var cSharpKeywords = GetCSharpKeywords();
-        //    var javaKeywords = GetJavaKeywords();
-
-        //    var employeeList = Employee.GetEmployees();
-        //    var enrollementList = TrainingEnrollment.GetEnrollments();
-        //    var courseList = Course.GetCourses();
-
-        //    //var setResult = from emp in employeeList
-        //    //                join enroll in enrollementList
-        //    //                on emp.Id equals enroll.EmployeeId
-        //    //                join course in courseList
-        //    //                on enroll.CourseId equals course.Id
-        //    //                select
-        //    //                new
-        //    //                {
-        //    //                    FullName = $"{emp.FirstName} {emp.LastName}",
-        //    //                    CourseTitle = course.Title
-        //    //                };
-
-        //    var firstJoin = employeeList.Join(enrollementList, 
-        //        emp => emp.Id, enroll => enroll.EmployeeId, (emp, enroll) => new 
-        //        { 
-        //           FullName = $"{emp.FirstName} {emp.LastName}",
-        //           enroll.EmployeeId,
-        //           enroll.CourseId
-        //        });
-
-        //    //foreach (var item in firstJoin)
-        //    //{
-        //    //    Console.WriteLine("{0} {1}", item.FullName, item.EmployeeId);
-        //    //}
-
-        //    var setResult = firstJoin.Join(courseList, empEnroll => empEnroll.CourseId,
-        //        course => course.Id, (empEnroll, course) =>
-        //        new
-        //        {
-        //            empEnroll.FullName,
-        //            CourseTitle = course.Title
-        //        });
-        //    //Console.WriteLine(setResult);
-        //    foreach (var item in setResult)
-        //    {
-        //        Console.WriteLine("{0}-{1}", item.FullName, item.CourseTitle);
-        //    }
-
-        //}
-
 
         public static List<string> GetCSharpKeywords()
         {

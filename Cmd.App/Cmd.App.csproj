@@ -11,6 +11,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="bin\Debug\net5.0\ajax.html" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Cmd.Core\Cmd.Core.csproj" />
   </ItemGroup>
 
