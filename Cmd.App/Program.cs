@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Program
 {
@@ -8,31 +9,47 @@ namespace Program
     {
         public static void Main(string[] args)
         {
-            Thread t1 = new Thread(() =>
+            try
             {
-                int numberOfSeconds = 0;
-                while (numberOfSeconds < 10)
-                {
-                    Console.WriteLine(++numberOfSeconds);
-                    Thread.Sleep(1000);
-                }
-            });
+                Task.Factory.StartNew(() =>
+                 {
+                     int numberOfSeconds = 0;
+                     while (numberOfSeconds < 10)
+                     {
+                         ++numberOfSeconds;
+                         throw new Exception("ooops");
+                        //Console.WriteLine();
+                        //Thread.Sleep(1000);
+                    }
 
-            Thread t2 = new Thread(() =>
+                     return numberOfSeconds;
+                 }).Wait();
+            }
+            catch (Exception)
             {
-                int numberOfSeconds = 50;
-                while (numberOfSeconds < 70)
-                {
-                    Console.WriteLine(++numberOfSeconds);
-                    Thread.Sleep(1000);
-                }
-            });
 
-            t1.Start();
-            t2.Start();
+                throw;
+            }
+
+
+
+            Task.Run(() =>
+             {
+                 int numberOfSeconds = 50;
+                 while (numberOfSeconds < 70)
+                 {
+                     ++numberOfSeconds;
+                     //Console.WriteLine();
+                     //Thread.Sleep(1000);
+                 }
+
+                 return Convert.ToString(numberOfSeconds);
+             });
+
+
             Console.WriteLine("Thread Started.");
 
-            //Console.ReadLine();
+            Console.ReadLine();
         }
 
         public static List<string> GetCSharpKeywords()
